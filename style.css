@@ -1,0 +1,906 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    background: #02060d;
+    color: #ffffff;
+    overflow-x: hidden;
+
+}
+
+
+
+/* ===========================
+   FUNDO PLACA MÃE
+=========================== */
+
+
+.background-tech {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+
+    background-image:
+
+    linear-gradient(
+        rgba(2,6,13,0.80),
+        rgba(2,6,13,0.95)
+    ),
+
+    url("imagens/motherboard.png");
+
+
+    background-size: cover;
+
+    background-position: center;
+
+
+    opacity: 0.45;
+
+
+    z-index: -2;
+
+
+    animation: motherboardMove 25s infinite alternate;
+
+}
+
+
+
+
+@keyframes motherboardMove {
+
+
+    from {
+
+        transform: scale(1);
+
+    }
+
+
+    to {
+
+        transform: scale(1.08);
+
+    }
+
+
+}
+
+
+
+
+
+
+
+.grid-tech {
+
+
+    position: fixed;
+
+    width:100%;
+    height:100%;
+
+
+    background:
+
+    linear-gradient(
+        rgba(0,120,255,0.08) 1px,
+        transparent 1px
+    ),
+
+    linear-gradient(
+        90deg,
+        rgba(0,120,255,0.08) 1px,
+        transparent 1px
+    );
+
+
+    background-size:50px 50px;
+
+
+    z-index:-1;
+
+
+}
+
+
+
+
+
+
+/* ===========================
+ HEADER
+=========================== */
+
+
+header {
+
+
+    width:100%;
+
+    height:90px;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+
+    padding:0 8%;
+
+
+    background:
+
+    rgba(0,0,0,0.45);
+
+
+    backdrop-filter:blur(12px);
+
+
+    border-bottom:
+
+    1px solid rgba(0,140,255,0.15);
+
+
+    position:sticky;
+
+    top:0;
+
+    z-index:10;
+
+
+}
+
+
+
+
+
+
+/* ===========================
+ LOGO CT
+=========================== */
+
+
+.logo {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+
+
+
+.ct-logo {
+
+
+    position:relative;
+
+    width:70px;
+
+    height:65px;
+
+
+    font-size:70px;
+
+    font-weight:900;
+
+    line-height:1;
+
+
+}
+
+
+
+.ct-logo .c {
+
+
+    position:absolute;
+
+    left:0;
+
+    color:#050505;
+
+
+    text-shadow:
+
+    0 0 5px rgba(255,255,255,0.25);
+
+}
+
+
+
+
+
+.ct-logo .t {
+
+
+    position:absolute;
+
+    left:28px;
+
+    color:#777;
+
+
+    background:
+
+    linear-gradient(
+        180deg,
+        #bfc7d0,
+        #454d55
+    );
+
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+
+}
+
+
+
+
+
+.brand-name {
+
+
+    font-size:22px;
+
+    font-weight:700;
+
+
+}
+
+
+.brand-name span {
+
+    color:#008cff;
+
+}
+
+
+
+
+
+
+/* ===========================
+ MENU
+=========================== */
+
+
+nav a {
+
+
+    color:white;
+
+    text-decoration:none;
+
+
+    margin-left:30px;
+
+
+    font-size:16px;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+nav a:hover {
+
+
+    color:#008cff;
+
+
+}
+
+
+
+
+
+
+/* ===========================
+ HERO
+=========================== */
+
+
+.hero {
+
+
+    min-height:85vh;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+
+    padding:0 8%;
+
+
+    gap:40px;
+
+
+}
+
+
+
+
+.hero-text {
+
+
+    max-width:650px;
+
+
+}
+
+
+
+
+.hero-text h1 {
+
+
+    font-size:55px;
+
+    line-height:1.1;
+
+
+    margin-bottom:25px;
+
+
+}
+
+
+
+.hero-text p {
+
+
+    font-size:20px;
+
+    color:#c4ced8;
+
+
+    line-height:1.6;
+
+
+}
+
+
+
+.btn {
+
+
+    display:inline-block;
+
+
+    margin-top:35px;
+
+
+    padding:16px 35px;
+
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #0078ff,
+        #004080
+    );
+
+
+    color:white;
+
+
+    text-decoration:none;
+
+
+    border-radius:30px;
+
+
+    font-weight:600;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.btn:hover {
+
+
+    transform:translateY(-5px);
+
+
+    box-shadow:
+
+    0 0 25px rgba(0,140,255,.5);
+
+
+}
+
+
+
+
+
+
+/* ===========================
+ CAIXA HERO
+=========================== */
+
+
+.hero-box {
+
+
+    width:350px;
+
+
+    padding:40px;
+
+
+    background:
+
+    rgba(255,255,255,0.06);
+
+
+    border:
+
+    1px solid rgba(255,255,255,0.15);
+
+
+    border-radius:25px;
+
+
+    backdrop-filter:blur(15px);
+
+
+}
+
+
+
+.hero-icon {
+
+
+    font-size:50px;
+
+}
+
+
+
+.hero-box h2 {
+
+
+    margin:20px 0;
+
+
+}
+
+
+
+.hero-box p {
+
+
+    color:#bbb;
+
+}
+
+
+
+.tech-status {
+
+
+    margin-top:25px;
+
+    line-height:2;
+
+    color:#00aaff;
+
+
+}
+
+
+
+
+
+
+
+/* ===========================
+ SEÇÕES
+=========================== */
+
+
+section {
+
+
+    padding:90px 8%;
+
+
+}
+
+
+
+section h2 {
+
+
+    text-align:center;
+
+    font-size:40px;
+
+    margin-bottom:50px;
+
+
+}
+
+
+
+
+
+
+/* ===========================
+ CARDS
+=========================== */
+
+
+.cards {
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+    repeat(3,1fr);
+
+
+    gap:30px;
+
+
+}
+
+
+
+.card {
+
+
+    padding:30px;
+
+
+    min-height:250px;
+
+
+    background:
+
+    rgba(255,255,255,0.06);
+
+
+    border:
+
+    1px solid rgba(255,255,255,0.12);
+
+
+    border-radius:20px;
+
+
+    backdrop-filter:blur(12px);
+
+
+    transition:.4s;
+
+
+}
+
+
+
+
+.card:hover {
+
+
+    transform:translateY(-10px);
+
+
+    border-color:#008cff;
+
+
+}
+
+
+
+.card h3 {
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+.card p {
+
+
+    color:#c5cbd1;
+
+    line-height:1.6;
+
+
+}
+
+
+
+.card a {
+
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    color:#008cff;
+
+    text-decoration:none;
+
+
+}
+
+
+
+
+
+
+
+/* ===========================
+ EMPRESA
+=========================== */
+
+
+.empresa {
+
+
+    text-align:center;
+
+
+}
+
+
+
+.empresa p {
+
+
+    max-width:900px;
+
+    margin:20px auto;
+
+    color:#c5cbd1;
+
+    font-size:18px;
+
+    line-height:1.8;
+
+
+}
+
+
+
+
+
+
+/* ===========================
+ DIFERENCIAIS
+=========================== */
+
+
+.numbers {
+
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:80px;
+
+    text-align:center;
+
+
+}
+
+
+
+.numbers strong {
+
+
+    font-size:50px;
+
+    color:#008cff;
+
+
+}
+
+
+
+
+
+/* ===========================
+ CONTATO
+=========================== */
+
+
+.whatsapp-buttons {
+
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+
+}
+
+
+
+.whatsapp-buttons .btn {
+
+
+    text-align:center;
+
+}
+
+
+
+
+
+
+
+/* ===========================
+ FOOTER
+=========================== */
+
+
+footer {
+
+
+    text-align:center;
+
+    padding:40px;
+
+
+    background:#010308;
+
+
+    color:#aaa;
+
+
+}
+
+
+
+
+
+
+/* ===========================
+ MOBILE
+=========================== */
+
+
+@media(max-width:900px){
+
+
+header {
+
+
+    flex-direction:column;
+
+    height:auto;
+
+    padding:25px;
+
+
+}
+
+
+
+nav {
+
+
+    margin-top:20px;
+
+
+}
+
+
+
+.hero {
+
+
+    flex-direction:column;
+
+    text-align:center;
+
+    padding-top:50px;
+
+
+}
+
+
+
+.hero-text h1 {
+
+
+    font-size:38px;
+
+
+}
+
+
+
+.hero-box {
+
+
+    width:100%;
+
+
+}
+
+
+
+.cards {
+
+
+    grid-template-columns:1fr;
+
+
+}
+
+
+
+.numbers {
+
+
+    flex-direction:column;
+
+    gap:40px;
+
+
+}
+
+
+
+.whatsapp-buttons {
+
+
+    flex-direction:column;
+
+
+}
+
+
+}
