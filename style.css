@@ -917,15 +917,6 @@ header {
 }
 
 
-.modal-box {
-
-    width:90%;
-
-    padding:35px 25px;
-
-}
-
-
 }
 
 
@@ -1117,5 +1108,18 @@ header {
     text-align:center;
 
     margin-top:0;
+
+}
+
+
+@media(max-width:900px){
+
+    .modal-box {
+
+        width:90%;
+
+        padding:35px 25px;
+
+    }
 
 }
