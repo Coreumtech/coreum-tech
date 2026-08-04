@@ -187,98 +187,82 @@ header {
 
     align-items:center;
 
-    gap:18px;
+    gap:14px;
 
 }
 
 
+.logo-icon {
 
+    flex-shrink:0;
 
-.ct-logo {
-
-
-    position:relative;
-
-    width:70px;
-
-    height:65px;
-
-
-    font-size:70px;
-
-    font-weight:900;
-
-    line-height:1;
-
+    filter:drop-shadow(0 0 6px rgba(0,140,255,0.35));
 
 }
-
-
-
-.ct-logo .c {
-
-
-    position:absolute;
-
-    left:0;
-
-    color:#050505;
-
-
-    text-shadow:
-
-    0 0 5px rgba(255,255,255,0.25);
-
-}
-
-
-
-
-
-.ct-logo .t {
-
-
-    position:absolute;
-
-    left:28px;
-
-    color:#777;
-
-
-    background:
-
-    linear-gradient(
-        180deg,
-        #bfc7d0,
-        #454d55
-    );
-
-
-    -webkit-background-clip:text;
-
-    -webkit-text-fill-color:transparent;
-
-
-}
-
-
-
 
 
 .brand-name {
 
+    display:flex;
 
-    font-size:22px;
+    flex-direction:column;
 
-    font-weight:700;
-
+    gap:6px;
 
 }
 
 
-.brand-name span {
+.brand-top {
+
+    font-size:21px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    color:#f2f5f8;
+
+}
+
+
+.brand-top span {
 
     color:#008cff;
+
+    font-weight:600;
+
+    letter-spacing:3px;
+
+    margin-left:4px;
+
+}
+
+
+.brand-badge {
+
+    align-self:flex-start;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+
+    color:#fff;
+
+    padding:2px 10px;
+
+    border-radius:20px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #0078ff,
+        #004080
+    );
 
 }
 
@@ -657,7 +641,7 @@ section h2 {
 
 
 
-.card a {
+.card-link {
 
 
     display:inline-block;
@@ -668,6 +652,29 @@ section h2 {
 
     text-decoration:none;
 
+    background:none;
+
+    border:none;
+
+    font-size:16px;
+
+    font-family:inherit;
+
+    cursor:pointer;
+
+    padding:0;
+
+    transition:.3s;
+
+
+}
+
+
+.card-link:hover {
+
+    color:#3fb0ff;
+
+    transform:translateX(4px);
 
 }
 
@@ -902,5 +909,213 @@ nav {
 
 }
 
+
+header {
+
+    gap:14px;
+
+}
+
+
+.modal-box {
+
+    width:90%;
+
+    padding:35px 25px;
+
+}
+
+
+}
+
+
+
+/* ===========================
+ MODAL DE INFORMAÇÕES
+=========================== */
+
+
+.modal-overlay {
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(2,6,13,0.85);
+
+    backdrop-filter:blur(6px);
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:100;
+
+}
+
+
+.modal-overlay.ativo {
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+
+.modal-box {
+
+    position:relative;
+
+    width:500px;
+
+    max-width:90%;
+
+    max-height:85vh;
+
+    overflow-y:auto;
+
+    padding:45px;
+
+    background:
+
+    linear-gradient(
+        160deg,
+        rgba(10,18,30,0.98),
+        rgba(2,6,13,0.98)
+    );
+
+    border:1px solid rgba(0,140,255,0.3);
+
+    border-radius:25px;
+
+    box-shadow:0 0 40px rgba(0,120,255,0.25);
+
+    transform:translateY(20px);
+
+    transition:.3s;
+
+}
+
+
+.modal-overlay.ativo .modal-box {
+
+    transform:translateY(0);
+
+}
+
+
+.modal-close {
+
+    position:absolute;
+
+    top:18px;
+    right:20px;
+
+    background:none;
+
+    border:none;
+
+    color:#aaa;
+
+    font-size:28px;
+
+    line-height:1;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.modal-close:hover {
+
+    color:#fff;
+
+}
+
+
+.modal-icon {
+
+    font-size:44px;
+
+    margin-bottom:15px;
+
+}
+
+
+.modal-box h3 {
+
+    font-size:26px;
+
+    margin-bottom:22px;
+
+    color:#f2f5f8;
+
+}
+
+
+.modal-list {
+
+    list-style:none;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+    margin-bottom:30px;
+
+}
+
+
+.modal-list li {
+
+    position:relative;
+
+    padding-left:24px;
+
+    color:#c5cbd1;
+
+    line-height:1.5;
+
+}
+
+
+.modal-list li::before {
+
+    content:"✓";
+
+    position:absolute;
+
+    left:0;
+
+    color:#008cff;
+
+    font-weight:700;
+
+}
+
+
+.modal-cta {
+
+    display:block;
+
+    text-align:center;
+
+    margin-top:0;
 
 }
