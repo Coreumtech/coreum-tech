@@ -1,157 +1,270 @@
-// ===========================
-// Efeito suave no movimento do fundo (placa mãe)
-// ===========================
+// ==========================================
+// COREUM TECH BUSINESS
+// script.js
+// ==========================================
+
+
+// ==========================================
+// EFEITO SUAVE NO FUNDO
+// ==========================================
 
 document.addEventListener("mousemove", (e) => {
 
-    let x = (e.clientX / window.innerWidth) * 10;
-    let y = (e.clientY / window.innerHeight) * 10;
-
     const bg = document.querySelector(".background-tech");
 
-    if (bg) {
-        bg.style.transform = `translate(${x}px, ${y}px) scale(1.08)`;
-    }
+    if (!bg) return;
+
+    const x = (e.clientX / window.innerWidth) * 8;
+    const y = (e.clientY / window.innerHeight) * 8;
+
+    bg.style.transform =
+        `translate(${x}px, ${y}px) scale(1.08)`;
 
 });
 
 
-// ===========================
-// Número de WhatsApp usado nos CTAs dos cards
-// ===========================
+// ==========================================
+// WHATSAPP PRINCIPAL
+// ==========================================
 
-const WHATSAPP_NUMERO = "5511925079059";
+// Número:
+// (11) 91474-2246
+//
+// No link do WhatsApp precisamos usar:
+// 55 + DDD + número
+
+const WHATSAPP_NUMERO = "5511914742246";
 
 
-// ===========================
-// Conteúdo de cada solução (o que aparece ao clicar em "Conhecer solução")
-// ===========================
+// ==========================================
+// ABRIR WHATSAPP
+// ==========================================
+
+function abrirWhatsApp(mensagem = "") {
+
+    const texto = encodeURIComponent(
+        mensagem ||
+        "Olá! Vim pelo site da Coreum Tech Business e gostaria de mais informações."
+    );
+
+    const url =
+        `https://wa.me/${WHATSAPP_NUMERO}?text=${texto}`;
+
+    window.open(url, "_blank");
+
+}
+
+
+// ==========================================
+// SERVIÇOS
+// ==========================================
 
 const servicos = {
 
     rede: {
+
         icone: "🌐",
+
         titulo: "Infraestrutura de Rede",
+
         itens: [
             "Projeto e cabeamento estruturado para escritórios e empresas",
             "Organização e identificação de racks, switches e pontos de rede",
             "Manutenção preventiva e correção de gargalos de desempenho",
-            "Padronização para facilitar expansões futuras"
+            "Padronização da infraestrutura para futuras expansões"
         ]
+
     },
+
 
     wifi: {
+
         icone: "📡",
+
         titulo: "Wi-Fi Corporativo",
+
         itens: [
-            "Projeto de cobertura sem pontos cegos, mesmo em áreas grandes",
-            "Redes separadas para colaboradores, visitantes e equipamentos",
-            "Autenticação segura e controle de acesso à rede",
+            "Projeto de cobertura Wi-Fi profissional",
+            "Redes separadas para colaboradores e visitantes",
+            "Autenticação segura e controle de acesso",
             "Equipamentos profissionais com gerenciamento centralizado"
         ]
+
     },
+
 
     m365: {
-        icone: "☁",
+
+        icone: "☁️",
+
         titulo: "Microsoft 365",
+
         itens: [
-            "Implantação de e-mail corporativo e domínio próprio",
+            "Implantação de e-mail corporativo",
             "Configuração de Outlook, Teams, OneDrive e SharePoint",
-            "Organização de arquivos e permissões por equipe",
-            "Suporte contínuo para dúvidas e novos usuários"
+            "Organização de arquivos e permissões",
+            "Migração e suporte Microsoft 365"
         ]
+
     },
+
 
     workspace: {
+
         icone: "🔵",
+
         titulo: "Google Workspace",
+
         itens: [
-            "Configuração de Gmail corporativo, Drive e Agenda",
-            "Ferramentas colaborativas para equipes remotas ou híbridas",
-            "Organização de arquivos e compartilhamento seguro",
-            "Migração de e-mails e dados de outras plataformas"
+            "Configuração de Gmail corporativo",
+            "Google Drive e ferramentas colaborativas",
+            "Organização e compartilhamento seguro de arquivos",
+            "Migração de e-mails e dados"
         ]
+
     },
+
 
     monitoramento: {
+
         icone: "📊",
-        titulo: "Monitoramento Grafana",
+
+        titulo: "Monitoramento",
+
         itens: [
-            "Painéis em tempo real de servidores e computadores",
-            "Alertas automáticos antes que um problema afete a operação",
-            "Acompanhamento de links de internet e disponibilidade",
-            "Indicadores visuais para tomada de decisão rápida"
+            "Monitoramento de servidores e computadores",
+            "Alertas automáticos de indisponibilidade",
+            "Monitoramento de links de internet",
+            "Painéis e indicadores em tempo real"
         ]
+
     },
+
 
     backup: {
+
         icone: "💾",
-        titulo: "Backup",
+
+        titulo: "Backup e Recuperação",
+
         itens: [
-            "Rotinas automáticas de backup local e em nuvem",
-            "Proteção contra falhas de hardware, erros humanos e ataques",
-            "Testes periódicos para garantir que a restauração funciona",
-            "Política de retenção adequada ao volume da empresa"
+            "Backup automático local e em nuvem",
+            "Proteção contra perda de arquivos",
+            "Proteção contra falhas e ataques",
+            "Testes periódicos de recuperação dos dados"
         ]
+
     },
+
 
     cftv: {
+
         icone: "📹",
-        titulo: "CFTV",
+
+        titulo: "CFTV e Segurança",
+
         itens: [
             "Instalação de câmeras internas e externas",
-            "Gravação em nuvem ou local, com acesso remoto pelo celular",
-            "Projeto de posicionamento para cobrir pontos estratégicos",
-            "Manutenção e suporte técnico contínuo"
+            "Gravação local ou em nuvem",
+            "Acesso remoto pelo celular",
+            "Manutenção e suporte técnico"
         ]
+
     },
+
 
     acesso: {
+
         icone: "🔐",
+
         titulo: "Controle de Acesso",
+
         itens: [
-            "Reconhecimento facial e biometria para entrada de colaboradores",
-            "Controle de horários e relatórios de acesso",
-            "Integração com portas, catracas e fechaduras eletrônicas",
-            "Aumento da segurança física da empresa"
+            "Controle de acesso por biometria",
+            "Reconhecimento facial",
+            "Controle de horários e usuários",
+            "Integração com portas, catracas e fechaduras"
         ]
+
     },
 
-    consultoria: {
-        icone: "💡",
-        titulo: "Consultoria em TI",
-        itens: [
-            "Diagnóstico completo da estrutura de TI atual",
-            "Plano de ação para reduzir custos e riscos",
-            "Recomendação de ferramentas e fornecedores adequados",
-            "Acompanhamento na implementação das melhorias"
-        ]
-    },
 
     suporte: {
-        icone: "🖥",
-        titulo: "Suporte Técnico",
+
+        icone: "🎧",
+
+        titulo: "Suporte Técnico Especializado",
+
         itens: [
-            "Atendimento remoto para resolver problemas rapidamente",
-            "Visitas presenciais quando necessário",
-            "Manutenção preventiva de computadores e servidores",
-            "Suporte para colaboradores em caso de falhas ou dúvidas"
+            "Atendimento remoto rápido",
+            "Atendimento presencial quando necessário",
+            "Manutenção preventiva",
+            "Suporte para computadores, sistemas e infraestrutura"
         ]
+
+    },
+
+
+    consultoria: {
+
+        icone: "👥",
+
+        titulo: "Consultoria em TI",
+
+        itens: [
+            "Análise completa da infraestrutura",
+            "Planejamento tecnológico",
+            "Redução de custos e riscos",
+            "Estratégias para melhorar produtividade e segurança"
+        ]
+
+    },
+
+
+    impressoras: {
+
+        icone: "🖨️",
+
+        titulo: "Suporte a Impressoras",
+
+        itens: [
+            "Instalação e configuração de impressoras",
+            "Configuração de impressoras em rede",
+            "Manutenção preventiva",
+            "Diagnóstico e correção de problemas"
+        ]
+
     }
 
 };
 
 
-// ===========================
-// Lógica do modal
-// ===========================
+// ==========================================
+// MODAL
+// ==========================================
 
-const modalOverlay = document.getElementById("modalOverlay");
-const modalIcon = document.getElementById("modalIcon");
-const modalTitle = document.getElementById("modalTitle");
-const modalList = document.getElementById("modalList");
-const modalCta = document.getElementById("modalCta");
-const modalClose = document.getElementById("modalClose");
+const modalOverlay =
+    document.getElementById("modalOverlay");
+
+const modalIcon =
+    document.getElementById("modalIcon");
+
+const modalTitle =
+    document.getElementById("modalTitle");
+
+const modalList =
+    document.getElementById("modalList");
+
+const modalCta =
+    document.getElementById("modalCta");
+
+const modalClose =
+    document.getElementById("modalClose");
+
+
+// ==========================================
+// ABRIR MODAL
+// ==========================================
 
 function abrirModal(chave) {
 
@@ -159,49 +272,198 @@ function abrirModal(chave) {
 
     if (!dados) return;
 
+    if (
+        !modalOverlay ||
+        !modalIcon ||
+        !modalTitle ||
+        !modalList ||
+        !modalCta
+    ) {
+        return;
+    }
+
+
+    // Ícone
+
     modalIcon.textContent = dados.icone;
+
+
+    // Título
+
     modalTitle.textContent = dados.titulo;
+
+
+    // Limpa lista
 
     modalList.innerHTML = "";
 
+
+    // Adiciona informações
+
     dados.itens.forEach((item) => {
-        const li = document.createElement("li");
+
+        const li =
+            document.createElement("li");
+
         li.textContent = item;
+
         modalList.appendChild(li);
+
     });
 
+
+    // ======================================
+    // LINK DO WHATSAPP DO SERVIÇO
+    // ======================================
+
     const mensagem = encodeURIComponent(
-        `Olá! Tenho interesse na solução de ${dados.titulo}. Podem me passar mais informações?`
+
+        `Olá! Vim pelo site da Coreum Tech Business e tenho interesse na solução de ${dados.titulo}. Gostaria de mais informações.`
+
     );
 
-    modalCta.href = `https://wa.me/${WHATSAPP_NUMERO}?text=${mensagem}`;
+
+    modalCta.href =
+        `https://wa.me/${WHATSAPP_NUMERO}?text=${mensagem}`;
+
+
+    // Abre modal
 
     modalOverlay.classList.add("ativo");
+
     document.body.style.overflow = "hidden";
 
 }
 
+
+// ==========================================
+// FECHAR MODAL
+// ==========================================
+
 function fecharModal() {
+
+    if (!modalOverlay) return;
+
     modalOverlay.classList.remove("ativo");
+
     document.body.style.overflow = "";
+
 }
 
-document.querySelectorAll(".card-link").forEach((botao) => {
-    botao.addEventListener("click", () => {
-        abrirModal(botao.dataset.service);
+
+// ==========================================
+// BOTÕES "CONHECER SOLUÇÃO"
+// ==========================================
+
+document
+    .querySelectorAll(".card-link")
+    .forEach((botao) => {
+
+        botao.addEventListener("click", () => {
+
+            const servico =
+                botao.dataset.service;
+
+            abrirModal(servico);
+
+        });
+
     });
-});
 
-modalClose.addEventListener("click", fecharModal);
 
-modalOverlay.addEventListener("click", (e) => {
-    if (e.target === modalOverlay) {
-        fecharModal();
+// ==========================================
+// BOTÃO X DO MODAL
+// ==========================================
+
+if (modalClose) {
+
+    modalClose.addEventListener(
+        "click",
+        fecharModal
+    );
+
+}
+
+
+// ==========================================
+// CLICAR FORA DO MODAL
+// ==========================================
+
+if (modalOverlay) {
+
+    modalOverlay.addEventListener(
+        "click",
+        (e) => {
+
+            if (e.target === modalOverlay) {
+
+                fecharModal();
+
+            }
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// TECLA ESC FECHA MODAL
+// ==========================================
+
+document.addEventListener(
+    "keydown",
+    (e) => {
+
+        if (e.key === "Escape") {
+
+            fecharModal();
+
+        }
+
     }
-});
+);
 
-document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-        fecharModal();
-    }
-});
+
+// ==========================================
+// LINKS/BOTÕES DE WHATSAPP
+// ==========================================
+
+// Você pode colocar no HTML:
+//
+// class="whatsapp-link"
+//
+// em qualquer botão que quiser transformar
+// em botão do WhatsApp.
+
+document
+    .querySelectorAll(".whatsapp-link")
+    .forEach((botao) => {
+
+        botao.addEventListener(
+            "click",
+            (e) => {
+
+                e.preventDefault();
+
+                abrirWhatsApp();
+
+            }
+        );
+
+    });
+
+
+// ==========================================
+// ANO AUTOMÁTICO NO RODAPÉ
+// ==========================================
+
+const anoAtual =
+    document.getElementById("anoAtual");
+
+if (anoAtual) {
+
+    anoAtual.textContent =
+        new Date().getFullYear();
+
+}
