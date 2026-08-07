@@ -16,7 +16,6 @@ body {
     min-height: 100vh;
 }
 
-/* FUNDO PLACA MÃE */
 .background-tech {
     position: fixed;
     inset: 0;
@@ -34,12 +33,8 @@ body {
 }
 
 @keyframes motherboardMove {
-    from {
-        transform: scale(1);
-    }
-    to {
-        transform: scale(1.08);
-    }
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
 }
 
 .grid-tech {
@@ -55,7 +50,6 @@ body {
     pointer-events: none;
 }
 
-/* HEADER */
 .site-header {
     width: 100%;
     min-height: 92px;
@@ -100,7 +94,6 @@ nav a:hover {
     color: #3aa0ff;
 }
 
-/* HERO */
 .hero {
     min-height: 85vh;
     display: flex;
@@ -171,7 +164,6 @@ nav a:hover {
     line-height: 1.6;
 }
 
-/* BOTÕES */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -213,7 +205,6 @@ nav a:hover {
     font-size: 18px;
 }
 
-/* SEÇÕES */
 .section {
     padding: 68px 7%;
 }
@@ -237,7 +228,6 @@ nav a:hover {
     color: #f3f6fa;
 }
 
-/* CARDS */
 .cards {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -265,10 +255,35 @@ nav a:hover {
 }
 
 .card-icon {
-    font-size: 58px;
+    width: 72px;
+    height: 72px;
+    display: grid;
+    place-items: center;
     color: #0a63ff;
     margin-bottom: 16px;
     line-height: 1;
+}
+
+.card-icon svg,
+.modal-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.svc-icon-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.svc-google-letter {
+    font-size: 62px;
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(90deg, #4285f4 0 25%, #ea4335 25% 50%, #fbbc05 50% 75%, #34a853 75% 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .card h3 {
@@ -306,7 +321,6 @@ nav a:hover {
     transform: translateX(4px);
 }
 
-/* BENEFÍCIOS */
 .benefits {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -340,7 +354,6 @@ nav a:hover {
     line-height: 1.45;
 }
 
-/* CONTATO */
 .contact-box {
     border-radius: 22px;
     background: rgba(255, 255, 255, 0.06);
@@ -448,7 +461,6 @@ nav a:hover {
     font-size: 13px;
 }
 
-/* FOOTER */
 .site-footer {
     padding: 28px 7% 36px;
     text-align: center;
@@ -466,7 +478,6 @@ nav a:hover {
     font-weight: 700;
 }
 
-/* MODAL */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -518,7 +529,8 @@ nav a:hover {
 }
 
 .modal-icon {
-    font-size: 48px;
+    width: 58px;
+    height: 58px;
     margin-bottom: 14px;
 }
 
@@ -555,7 +567,6 @@ nav a:hover {
     width: 100%;
 }
 
-/* RESPONSIVO */
 @media (max-width: 1180px) {
     .cards {
         grid-template-columns: repeat(2, minmax(0, 1fr));
