@@ -1,197 +1,181 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coreum Tech Business | Tecnologia Inteligente</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="page-shell">
-    <header class="topbar">
-      <a class="brand" href="#inicio" aria-label="Coreum Tech Business">
-        <img class="brand-logo" src="logo-full.png" alt="Coreum Tech Business" />
-      </a>
+// script.js
 
-      <nav class="nav" aria-label="Navegação principal">
-        <a href="#inicio">Início</a>
-        <a href="#solucoes">Soluções</a>
-        <a href="#diferenciais">Por que escolher</a>
-        <a href="#contato">Contato</a>
-        <a class="header-whatsapp" href="https://wa.me/5511914742246" target="_blank" rel="noreferrer"><span class="wa-icon">☎</span> (11) 91474-2246</a>
-      </nav>
-    </header>
+// Efeito suave no movimento do fundo (placa mãe)
+document.addEventListener("mousemove", (e) => {
+    const bg = document.querySelector(".background-tech");
+    if (!bg) return;
 
-    <main>
-      <section class="hero" id="inicio">
-        <div class="hero-copy">
-          <p class="eyebrow">TECNOLOGIA INTELIGENTE</p>
-          <h1>Para impulsionar o seu negócio.</h1>
-          <p class="lead">
-            Soluções completas em TI para aumentar a produtividade, a segurança e a eficiência da sua empresa.
-          </p>
+    const x = (e.clientX / window.innerWidth) * 10;
+    const y = (e.clientY / window.innerHeight) * 10;
 
-          <div class="cta-row">
-            <a class="btn btn-primary" href="#contato">Falar com especialista</a>
-            <a class="btn btn-ghost" href="#solucoes">Ver soluções</a>
-          </div>
-        </div>
+    bg.style.transform = `translate(${x}px, ${y}px) scale(1.08)`;
+});
 
-        <div class="hero-visual" aria-hidden="true">
-          <div class="arc arc-1"></div>
-          <div class="arc arc-2"></div>
-          <div class="office-card office-main">
-            <div class="desk-screen"></div>
-            <div class="desk-keyboard"></div>
-            <div class="desk-mug">
-              <span class="desk-mug-logo">CT</span>
-            </div>
-            <div class="desk-plant left"></div>
-            <div class="desk-plant right"></div>
-          </div>
-          <div class="trust-card">
-            <div class="shield-icon">🛡</div>
-            <div>
-              <strong>PROTEGEMOS SUA EMPRESA</strong>
-              <p>com tecnologia, segurança e suporte especializado.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+// Mantém os dois contatos que já existem no código
+const CONTATOS = [
+    "5511925079059",
+    "5511914742246"
+];
 
-      <section class="solutions" id="solucoes">
-        <div class="section-heading">
-          <span class="line"></span>
-          <h2>NOSSAS SOLUÇÕES</h2>
-          <span class="line"></span>
-        </div>
+// Abre o WhatsApp de acordo com o número do botão clicado
+function abrirWhatsApp(numero, mensagem) {
+    const texto = encodeURIComponent(mensagem);
+    window.open(`https://wa.me/${numero}?text=${texto}`, "_blank");
+}
 
-        <div class="services-grid">
-          <article class="service-card">
-            <div class="service-icon">🖧</div>
-            <h3>Infraestrutura de Rede</h3>
-            <p>Projetos, implantação e manutenção de redes cabeadas e Wi-Fi corporativo.</p>
-            <button class="service-btn" type="button" data-service="rede">Saiba mais</button>
-          </article>
+// Conteúdo dos serviços
+const servicos = {
+    rede: {
+        icone: "🌐",
+        titulo: "Infraestrutura de Rede",
+        itens: [
+            "Projeto e cabeamento estruturado para escritórios e empresas",
+            "Organização e identificação de racks, switches e pontos de rede",
+            "Manutenção preventiva e correção de gargalos de desempenho",
+            "Padronização para facilitar expansões futuras"
+        ]
+    },
+    wifi: {
+        icone: "📡",
+        titulo: "Wi-Fi Corporativo",
+        itens: [
+            "Projeto de cobertura sem pontos cegos, mesmo em áreas grandes",
+            "Redes separadas para colaboradores, visitantes e equipamentos",
+            "Autenticação segura e controle de acesso à rede",
+            "Equipamentos profissionais com gerenciamento centralizado"
+        ]
+    },
+    m365: {
+        icone: "☁",
+        titulo: "Microsoft 365",
+        itens: [
+            "Implantação de e-mail corporativo e domínio próprio",
+            "Configuração de Outlook, Teams, OneDrive e SharePoint",
+            "Organização de arquivos e permissões por equipe",
+            "Suporte contínuo para dúvidas e novos usuários"
+        ]
+    },
+    workspace: {
+        icone: "🔵",
+        titulo: "Google Workspace",
+        itens: [
+            "Configuração de Gmail corporativo, Drive e Agenda",
+            "Ferramentas colaborativas para equipes remotas ou híbridas",
+            "Organização de arquivos e compartilhamento seguro",
+            "Migração de e-mails e dados de outras plataformas"
+        ]
+    },
+    monitoramento: {
+        icone: "📊",
+        titulo: "Monitoramento Grafana",
+        itens: [
+            "Painéis em tempo real de servidores e computadores",
+            "Alertas automáticos antes que um problema afete a operação",
+            "Acompanhamento de links de internet e disponibilidade",
+            "Indicadores visuais para tomada de decisão rápida"
+        ]
+    },
+    backup: {
+        icone: "💾",
+        titulo: "Backup",
+        itens: [
+            "Rotinas automáticas de backup local e em nuvem",
+            "Proteção contra falhas de hardware, erros humanos e ataques",
+            "Testes periódicos para garantir que a restauração funciona",
+            "Política de retenção adequada ao volume da empresa"
+        ]
+    },
+    cftv: {
+        icone: "📹",
+        titulo: "CFTV",
+        itens: [
+            "Instalação de câmeras internas e externas",
+            "Gravação em nuvem ou local, com acesso remoto pelo celular",
+            "Projeto de posicionamento para cobrir pontos estratégicos",
+            "Manutenção e suporte técnico contínuo"
+        ]
+    },
+    acesso: {
+        icone: "🔐",
+        titulo: "Controle de Acesso",
+        itens: [
+            "Reconhecimento facial e biometria para entrada de colaboradores",
+            "Controle de horários e relatórios de acesso",
+            "Integração com portas, catracas e fechaduras eletrônicas",
+            "Aumento da segurança física da empresa"
+        ]
+    },
+    consultoria: {
+        icone: "💡",
+        titulo: "Consultoria em TI",
+        itens: [
+            "Diagnóstico completo da estrutura de TI atual",
+            "Plano de ação para reduzir custos e riscos",
+            "Recomendação de ferramentas e fornecedores adequados",
+            "Acompanhamento na implementação das melhorias"
+        ]
+    },
+    suporte: {
+        icone: "🖥",
+        titulo: "Suporte Técnico",
+        itens: [
+            "Atendimento remoto para resolver problemas rapidamente",
+            "Visitas presenciais quando necessário",
+            "Manutenção preventiva de computadores e servidores",
+            "Suporte para colaboradores em caso de falhas ou dúvidas"
+        ]
+    }
+};
 
-          <article class="service-card">
-            <div class="service-icon">📶</div>
-            <h3>Wi-Fi Corporativo</h3>
-            <p>Soluções profissionais com alta performance, cobertura e segurança.</p>
-            <button class="service-btn" type="button" data-service="wifi">Saiba mais</button>
-          </article>
+const modalOverlay = document.getElementById("modalOverlay");
+const modalIcon = document.getElementById("modalIcon");
+const modalTitle = document.getElementById("modalTitle");
+const modalList = document.getElementById("modalList");
+const modalCta = document.getElementById("modalCta");
+const modalClose = document.getElementById("modalClose");
 
-          <article class="service-card">
-            <div class="service-icon">☁</div>
-            <h3>Microsoft 365</h3>
-            <p>Implantação, migração e suporte para Exchange, Teams, OneDrive e SharePoint.</p>
-            <button class="service-btn" type="button" data-service="m365">Saiba mais</button>
-          </article>
+function abrirModal(chave) {
+    const dados = servicos[chave];
+    if (!dados) return;
 
-          <article class="service-card">
-            <div class="service-icon">◎</div>
-            <h3>Google Workspace</h3>
-            <p>Implantação, migração e suporte para Gmail, Drive, Meet, Docs e mais.</p>
-            <button class="service-btn" type="button" data-service="workspace">Saiba mais</button>
-          </article>
+    modalIcon.textContent = dados.icone;
+    modalTitle.textContent = dados.titulo;
+    modalList.innerHTML = "";
 
-          <article class="service-card">
-            <div class="service-icon">⛁</div>
-            <h3>Backup e Recuperação</h3>
-            <p>Proteção e recuperação de dados com segurança e confiabilidade.</p>
-            <button class="service-btn" type="button" data-service="backup">Saiba mais</button>
-          </article>
+    dados.itens.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        modalList.appendChild(li);
+    });
 
-          <article class="service-card">
-            <div class="service-icon">📹</div>
-            <h3>CFTV e Segurança</h3>
-            <p>Projetos e instalação de sistemas de câmeras e monitoramento.</p>
-            <button class="service-btn" type="button" data-service="cftv">Saiba mais</button>
-          </article>
+    const mensagem = `Olá! Tenho interesse na solução de ${dados.titulo}. Podem me passar mais informações?`;
+    modalCta.href = `https://wa.me/${CONTATOS[0]}?text=${encodeURIComponent(mensagem)}`;
 
-          <article class="service-card">
-            <div class="service-icon">🔐</div>
-            <h3>Controle de Acesso</h3>
-            <p>Soluções modernas para controle de acesso físico e gestão de usuários.</p>
-            <button class="service-btn" type="button" data-service="acesso">Saiba mais</button>
-          </article>
+    modalOverlay.classList.add("ativo");
+    document.body.style.overflow = "hidden";
+}
 
-          <article class="service-card">
-            <div class="service-icon">🎧</div>
-            <h3>Suporte Técnico Especializado</h3>
-            <p>Atendimento rápido e eficiente para manter sua empresa sempre em operação.</p>
-            <button class="service-btn" type="button" data-service="suporte">Saiba mais</button>
-          </article>
+function fecharModal() {
+    modalOverlay.classList.remove("ativo");
+    document.body.style.overflow = "";
+}
 
-          <article class="service-card">
-            <div class="service-icon">👥</div>
-            <h3>Consultoria em TI</h3>
-            <p>Análise, planejamento e estratégias para otimizar processos e reduzir custos.</p>
-            <button class="service-btn" type="button" data-service="consultoria">Saiba mais</button>
-          </article>
+document.querySelectorAll(".card-link").forEach((botao) => {
+    botao.addEventListener("click", () => {
+        abrirModal(botao.dataset.service);
+    });
+});
 
-          <article class="service-card">
-            <div class="service-icon">🖨</div>
-            <h3>Suporte a Impressoras</h3>
-            <p>Instalação, configuração e manutenção preventiva e corretiva.</p>
-            <button class="service-btn" type="button" data-service="impressoras">Saiba mais</button>
-          </article>
-        </div>
-      </section>
+if (modalClose) {
+    modalClose.addEventListener("click", fecharModal);
+}
 
-      <section class="why" id="diferenciais">
-        <div class="why-box">
-          <h2>POR QUE ESCOLHER A <span>COREUM TECH BUSINESS?</span></h2>
-          <div class="why-grid">
-            <div class="why-item"><span>🛡</span><p>Soluções seguras e confiáveis</p></div>
-            <div class="why-item"><span>🏅</span><p>Tecnologia de qualidade</p></div>
-            <div class="why-item"><span>⏱</span><p>Atendimento rápido</p></div>
-            <div class="why-item"><span>🤝</span><p>Proximidade e parceria</p></div>
-            <div class="why-item"><span>📊</span><p>Foco em resultados</p></div>
-          </div>
-        </div>
-      </section>
+if (modalOverlay) {
+    modalOverlay.addEventListener("click", (e) => {
+        if (e.target === modalOverlay) fecharModal();
+    });
+}
 
-      <section class="contact" id="contato">
-        <div class="contact-card">
-          <div class="contact-left">
-            <div class="whatsapp-badge">☎</div>
-            <div>
-              <p class="contact-label">FALE CONOSCO</p>
-              <a class="contact-phone" href="https://wa.me/5511914742246" target="_blank" rel="noreferrer"><span class="wa-inline">☎</span> (11) 91474-2246</a>
-              <a class="contact-cta" href="https://wa.me/5511914742246" target="_blank" rel="noreferrer">ATENDIMENTO VIA WHATSAPP</a>
-            </div>
-          </div>
-
-          <div class="contact-divider"></div>
-
-          <div class="contact-right">
-            <div class="location-pin">📍</div>
-            <div>
-              <p class="contact-label">ATENDEMOS</p>
-              <p class="contact-text">Carapicuíba, Barueri, Osasco e região.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="footer-bar">
-          <span>🌐</span>
-          <a href="https://www.coreumtech.com.br" target="_blank" rel="noreferrer">www.coreumtech.com.br</a>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close" id="modalClose" type="button" aria-label="Fechar">&times;</button>
-      <div class="modal-icon" id="modalIcon"></div>
-      <h3 id="modalTitle"></h3>
-      <ul class="modal-list" id="modalList"></ul>
-      <a class="btn btn-primary modal-cta" id="modalCta" target="_blank" rel="noreferrer">Falar no WhatsApp</a>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") fecharModal();
+});
