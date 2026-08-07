@@ -9,7 +9,6 @@ document.addEventListener("mousemove", (e) => {
 });
 
 const WHATSAPP_PRINCIPAL = "5511914742246";
-const WHATSAPP_SECUNDARIO = "5511925079059";
 
 const servicos = {
     rede: {
@@ -33,7 +32,14 @@ const servicos = {
         ]
     },
     m365: {
-        icone: "⬚",
+        icone: `
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+                <rect x="4" y="4" width="26" height="26" fill="#f25022"></rect>
+                <rect x="34" y="4" width="26" height="26" fill="#7fba00"></rect>
+                <rect x="4" y="34" width="26" height="26" fill="#00a4ef"></rect>
+                <rect x="34" y="34" width="26" height="26" fill="#ffb900"></rect>
+            </svg>
+        `,
         titulo: "Microsoft 365",
         itens: [
             "Implantação de e-mail corporativo e domínio próprio",
@@ -43,7 +49,14 @@ const servicos = {
         ]
     },
     workspace: {
-        icone: "G",
+        icone: `
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+                <path d="M56 33.5c0-1.7-.2-3.3-.5-4.9H32v9.2h13.5c-.6 3.1-2.4 5.7-5.1 7.5v6.2h8.2c4.8-4.4 7.4-10.8 7.4-18z" fill="#4285f4"></path>
+                <path d="M32 58c6.9 0 12.7-2.3 16.9-6.2l-8.2-6.2c-2.3 1.5-5.2 2.4-8.7 2.4-6.7 0-12.4-4.5-14.5-10.5h-8.5v6.4C12.9 52.1 21.8 58 32 58z" fill="#34a853"></path>
+                <path d="M17.5 37.5c-.6-1.8-1-3.7-1-5.7s.4-3.9 1-5.7v-6.4h-8.5C7.4 24 6 27.8 6 31.8S7.4 39.6 9 43.7l8.5-6.2z" fill="#fbbc05"></path>
+                <path d="M32 16.7c3.8 0 7.2 1.3 9.9 3.9l7.4-7.4C44.6 8.9 38.8 6.4 32 6.4 21.8 6.4 12.9 12.3 8.5 21.1l8.5 6.4c2.1-6 7.8-10.8 14.5-10.8z" fill="#4285f4"></path>
+            </svg>
+        `,
         titulo: "Google Workspace",
         itens: [
             "Configuração de Gmail corporativo, Drive e Agenda",
@@ -83,7 +96,22 @@ const servicos = {
         ]
     },
     suporte: {
-        icone: "🖥️",
+        icone: `
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+                <rect x="10" y="14" width="44" height="28" rx="4" fill="#4a8cff"></rect>
+                <rect x="14" y="18" width="36" height="20" rx="2" fill="#0c1320"></rect>
+                <rect x="24" y="44" width="16" height="4" rx="2" fill="#4a8cff"></rect>
+                <rect x="18" y="50" width="28" height="4" rx="2" fill="#4a8cff"></rect>
+                <circle cx="41" cy="28" r="8" fill="#6ea8ff"></circle>
+                <circle cx="41" cy="28" r="4" fill="#0c1320"></circle>
+                <g fill="#4a8cff">
+                    <rect x="39.8" y="19.5" width="2.4" height="6.2" rx="1.2"></rect>
+                    <rect x="39.8" y="30.3" width="2.4" height="6.2" rx="1.2"></rect>
+                    <rect x="32.8" y="27" width="6.2" height="2.4" rx="1.2"></rect>
+                    <rect x="42.9" y="27" width="6.2" height="2.4" rx="1.2"></rect>
+                </g>
+            </svg>
+        `,
         titulo: "Suporte Técnico Especializado",
         itens: [
             "Atendimento remoto para resolver problemas rapidamente",
@@ -125,7 +153,7 @@ function abrirModal(chave) {
     const dados = servicos[chave];
     if (!dados || !modalOverlay || !modalIcon || !modalTitle || !modalList || !modalCta) return;
 
-    modalIcon.textContent = dados.icone;
+    modalIcon.innerHTML = dados.icone;
     modalTitle.textContent = dados.titulo;
     modalList.innerHTML = "";
 
@@ -162,17 +190,14 @@ if (modalClose) {
 
 if (modalOverlay) {
     modalOverlay.addEventListener("click", (e) => {
-        if (e.target === modalOverlay) fecharModal();
+        if (e.target === modalOverlay) {
+            fecharModal();
+        }
     });
 }
 
 document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") fecharModal();
-});
-
-document.querySelectorAll(".whatsapp-link").forEach((link) => {
-    link.addEventListener("click", () => {
-        const href = link.getAttribute("href");
-        if (href) window.open(href, "_blank");
-    });
+    if (e.key === "Escape") {
+        fecharModal();
+    }
 });
