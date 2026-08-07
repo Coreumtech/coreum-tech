@@ -1,9 +1,5 @@
 // script.js
 
-// ==========================================
-// EFEITO SUAVE NO FUNDO (PLACA MÃE)
-// ==========================================
-
 document.addEventListener("mousemove", (e) => {
     const bg = document.querySelector(".background-tech");
     if (!bg) return;
@@ -14,18 +10,8 @@ document.addEventListener("mousemove", (e) => {
     bg.style.transform = `translate(${x}px, ${y}px) scale(1.08)`;
 });
 
-// ==========================================
-// CONTATOS DE WHATSAPP
-// ==========================================
-
-const WHATSAPP_CONTATOS = [
-    "5511925079059",
-    "5511914742246"
-];
-
-// ==========================================
-// CONTEÚDO DOS SERVIÇOS
-// ==========================================
+const WHATSAPP_NUMERO_PRINCIPAL = "5511914742246";
+const WHATSAPP_NUMERO_SECUNDARIO = "5511925079059";
 
 const servicos = {
     rede: {
@@ -49,7 +35,14 @@ const servicos = {
         ]
     },
     m365: {
-        icone: "☁",
+        icone: `
+            <svg class="svc-icon-svg" viewBox="0 0 64 64" aria-hidden="true">
+                <rect x="4" y="4" width="26" height="26" fill="#f25022"></rect>
+                <rect x="34" y="4" width="26" height="26" fill="#7fba00"></rect>
+                <rect x="4" y="34" width="26" height="26" fill="#00a4ef"></rect>
+                <rect x="34" y="34" width="26" height="26" fill="#ffb900"></rect>
+            </svg>
+        `,
         titulo: "Microsoft 365",
         itens: [
             "Implantação de e-mail corporativo e domínio próprio",
@@ -59,7 +52,9 @@ const servicos = {
         ]
     },
     workspace: {
-        icone: "🔵",
+        icone: `
+            <span class="svc-google-letter">G</span>
+        `,
         titulo: "Google Workspace",
         itens: [
             "Configuração de Gmail corporativo, Drive e Agenda",
@@ -90,7 +85,7 @@ const servicos = {
     },
     cftv: {
         icone: "📹",
-        titulo: "CFTV",
+        titulo: "CFTV e Segurança",
         itens: [
             "Instalação de câmeras internas e externas",
             "Gravação em nuvem ou local, com acesso remoto pelo celular",
@@ -108,6 +103,29 @@ const servicos = {
             "Aumento da segurança física da empresa"
         ]
     },
+    suporte: {
+        icone: `
+            <svg class="svc-icon-svg" viewBox="0 0 64 64" aria-hidden="true">
+                <rect x="10" y="12" width="44" height="30" rx="4" fill="#4a8cff"></rect>
+                <rect x="14" y="16" width="36" height="22" rx="2" fill="#0c1320"></rect>
+                <rect x="26" y="46" width="12" height="4" rx="2" fill="#4a8cff"></rect>
+                <rect x="20" y="50" width="24" height="4" rx="2" fill="#4a8cff"></rect>
+                <circle cx="42" cy="28" r="8" fill="#6ea8ff"></circle>
+                <circle cx="42" cy="28" r="4" fill="#0c1320"></circle>
+                <rect x="40.5" y="20" width="3" height="6" rx="1.5" fill="#4a8cff"></rect>
+                <rect x="40.5" y="30" width="3" height="6" rx="1.5" fill="#4a8cff"></rect>
+                <rect x="34" y="26.5" width="6" height="3" rx="1.5" fill="#4a8cff"></rect>
+                <rect x="44" y="26.5" width="6" height="3" rx="1.5" fill="#4a8cff"></rect>
+            </svg>
+        `,
+        titulo: "Suporte Técnico Especializado",
+        itens: [
+            "Atendimento remoto para resolver problemas rapidamente",
+            "Visitas presenciais quando necessário",
+            "Manutenção preventiva de computadores e servidores",
+            "Suporte para colaboradores em caso de falhas ou dúvidas"
+        ]
+    },
     consultoria: {
         icone: "💡",
         titulo: "Consultoria em TI",
@@ -116,16 +134,6 @@ const servicos = {
             "Plano de ação para reduzir custos e riscos",
             "Recomendação de ferramentas e fornecedores adequados",
             "Acompanhamento na implementação das melhorias"
-        ]
-    },
-    suporte: {
-        icone: "🖥",
-        titulo: "Suporte Técnico",
-        itens: [
-            "Atendimento remoto para resolver problemas rapidamente",
-            "Visitas presenciais quando necessário",
-            "Manutenção preventiva de computadores e servidores",
-            "Suporte para colaboradores em caso de falhas ou dúvidas"
         ]
     },
     impressoras: {
@@ -140,10 +148,6 @@ const servicos = {
     }
 };
 
-// ==========================================
-// MODAL
-// ==========================================
-
 const modalOverlay = document.getElementById("modalOverlay");
 const modalIcon = document.getElementById("modalIcon");
 const modalTitle = document.getElementById("modalTitle");
@@ -155,7 +159,7 @@ function abrirModal(chave) {
     const dados = servicos[chave];
     if (!dados || !modalOverlay || !modalIcon || !modalTitle || !modalList || !modalCta) return;
 
-    modalIcon.textContent = dados.icone;
+    modalIcon.innerHTML = dados.icone;
     modalTitle.textContent = dados.titulo;
     modalList.innerHTML = "";
 
@@ -169,7 +173,7 @@ function abrirModal(chave) {
         `Olá! Tenho interesse na solução de ${dados.titulo}. Podem me passar mais informações?`
     );
 
-    modalCta.href = `https://wa.me/${WHATSAPP_CONTATOS[0]}?text=${mensagem}`;
+    modalCta.href = `https://wa.me/${WHATSAPP_NUMERO_PRINCIPAL}?text=${mensagem}`;
     modalOverlay.classList.add("ativo");
     document.body.style.overflow = "hidden";
 }
@@ -192,14 +196,17 @@ if (modalClose) {
 
 if (modalOverlay) {
     modalOverlay.addEventListener("click", (e) => {
-        if (e.target === modalOverlay) {
-            fecharModal();
-        }
+        if (e.target === modalOverlay) fecharModal();
     });
 }
 
 document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-        fecharModal();
-    }
+    if (e.key === "Escape") fecharModal();
+});
+
+document.querySelectorAll(".whatsapp-link").forEach((botao) => {
+    botao.addEventListener("click", () => {
+        const href = botao.getAttribute("href");
+        if (href) window.open(href, "_blank");
+    });
 });
