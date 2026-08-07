@@ -677,11 +677,20 @@ nav a:hover {
     }
 
     .whatsapp-badge,
-    .location-icon {
-        width: 66px;
-        height: 66px;
-        min-width: 66px;
-    }
+.location-icon {
+    width: 82px;
+    height: 82px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.location-pin-img {
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
+    display: block;
+}
 
     .contact-main {
         padding: 22px 18px 16px;
