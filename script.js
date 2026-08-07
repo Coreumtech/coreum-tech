@@ -1,6 +1,9 @@
 // script.js
 
-// Efeito suave no movimento do fundo (placa mãe)
+// ==========================================
+// EFEITO SUAVE NO FUNDO (PLACA MÃE)
+// ==========================================
+
 document.addEventListener("mousemove", (e) => {
     const bg = document.querySelector(".background-tech");
     if (!bg) return;
@@ -11,19 +14,19 @@ document.addEventListener("mousemove", (e) => {
     bg.style.transform = `translate(${x}px, ${y}px) scale(1.08)`;
 });
 
-// Mantém os dois contatos que já existem no código
-const CONTATOS = [
+// ==========================================
+// CONTATOS DE WHATSAPP
+// ==========================================
+
+const WHATSAPP_CONTATOS = [
     "5511925079059",
     "5511914742246"
 ];
 
-// Abre o WhatsApp de acordo com o número do botão clicado
-function abrirWhatsApp(numero, mensagem) {
-    const texto = encodeURIComponent(mensagem);
-    window.open(`https://wa.me/${numero}?text=${texto}`, "_blank");
-}
+// ==========================================
+// CONTEÚDO DOS SERVIÇOS
+// ==========================================
 
-// Conteúdo dos serviços
 const servicos = {
     rede: {
         icone: "🌐",
@@ -124,8 +127,22 @@ const servicos = {
             "Manutenção preventiva de computadores e servidores",
             "Suporte para colaboradores em caso de falhas ou dúvidas"
         ]
+    },
+    impressoras: {
+        icone: "🖨️",
+        titulo: "Suporte a Impressoras",
+        itens: [
+            "Instalação e configuração de impressoras",
+            "Configuração de impressoras em rede",
+            "Manutenção preventiva",
+            "Diagnóstico e correção de problemas"
+        ]
     }
 };
+
+// ==========================================
+// MODAL
+// ==========================================
 
 const modalOverlay = document.getElementById("modalOverlay");
 const modalIcon = document.getElementById("modalIcon");
@@ -136,7 +153,7 @@ const modalClose = document.getElementById("modalClose");
 
 function abrirModal(chave) {
     const dados = servicos[chave];
-    if (!dados) return;
+    if (!dados || !modalOverlay || !modalIcon || !modalTitle || !modalList || !modalCta) return;
 
     modalIcon.textContent = dados.icone;
     modalTitle.textContent = dados.titulo;
@@ -148,14 +165,17 @@ function abrirModal(chave) {
         modalList.appendChild(li);
     });
 
-    const mensagem = `Olá! Tenho interesse na solução de ${dados.titulo}. Podem me passar mais informações?`;
-    modalCta.href = `https://wa.me/${CONTATOS[0]}?text=${encodeURIComponent(mensagem)}`;
+    const mensagem = encodeURIComponent(
+        `Olá! Tenho interesse na solução de ${dados.titulo}. Podem me passar mais informações?`
+    );
 
+    modalCta.href = `https://wa.me/${WHATSAPP_CONTATOS[0]}?text=${mensagem}`;
     modalOverlay.classList.add("ativo");
     document.body.style.overflow = "hidden";
 }
 
 function fecharModal() {
+    if (!modalOverlay) return;
     modalOverlay.classList.remove("ativo");
     document.body.style.overflow = "";
 }
@@ -172,10 +192,14 @@ if (modalClose) {
 
 if (modalOverlay) {
     modalOverlay.addEventListener("click", (e) => {
-        if (e.target === modalOverlay) fecharModal();
+        if (e.target === modalOverlay) {
+            fecharModal();
+        }
     });
 }
 
 document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") fecharModal();
+    if (e.key === "Escape") {
+        fecharModal();
+    }
 });
