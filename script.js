@@ -65,6 +65,16 @@ const servicos = {
             "Migração de e-mails e dados de outras plataformas"
         ]
     },
+    sites: {
+        icone: "🌐",
+        titulo: "Criação de Sites Corporativos",
+        itens: [
+            "Desenvolvimento de sites profissionais para empresas",
+            "Layout responsivo para celular, tablet e computador",
+            "Estrutura pensada para apresentar serviços e gerar contatos",
+            "Integração com WhatsApp e presença digital da empresa"
+        ]
+    },
     backup: {
         icone: "🗄️",
         titulo: "Backup e Recuperação",
@@ -149,6 +159,99 @@ const modalList = document.getElementById("modalList");
 const modalCta = document.getElementById("modalCta");
 const modalClose = document.getElementById("modalClose");
 
+const leadModalOverlay = document.getElementById("leadModalOverlay");
+const leadModalClose = document.getElementById("leadModalClose");
+const leadForm = document.getElementById("leadForm");
+const leadName = document.getElementById("leadName");
+const leadCity = document.getElementById("leadCity");
+const leadEmail = document.getElementById("leadEmail");
+const leadPhone = document.getElementById("leadPhone");
+
+let leadContext = {
+    phone: WHATSAPP_PRINCIPAL,
+    service: ""
+};
+
+function abrirLeadModal({ phone = WHATSAPP_PRINCIPAL, service = "" } = {}) {
+    if (!leadModalOverlay || !leadForm) return;
+
+    leadContext = { phone, service };
+    leadModalOverlay.classList.add("ativo");
+    leadModalOverlay.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    window.setTimeout(() => {
+        if (leadName) leadName.focus();
+    }, 50);
+}
+
+function fecharLeadModal() {
+    if (!leadModalOverlay) return;
+
+    leadModalOverlay.classList.remove("ativo");
+    leadModalOverlay.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+}
+
+function montarMensagemWhatsApp({ nome, cidade, email, telefone, service }) {
+    const linhas = [
+        "Olá! Vim pelo site da Coreum Tech Business e gostaria de mais informações.",
+        "",
+        `Nome: ${nome}`,
+        `Cidade: ${cidade}`,
+        `E-mail: ${email}`,
+        `Telefone: ${telefone}`
+    ];
+
+    if (service) {
+        linhas.push("", `Serviço de interesse: ${service}`);
+    }
+
+    return linhas.join("\n");
+}
+
+function obterNumeroWhatsApp(link) {
+    const dataNumber = link?.dataset?.leadWhatsapp;
+    if (dataNumber) return dataNumber;
+
+    try {
+        const url = new URL(link.href);
+        const numero = url.pathname.replace(/\D/g, "");
+        return numero || WHATSAPP_PRINCIPAL;
+    } catch {
+        return WHATSAPP_PRINCIPAL;
+    }
+}
+
+function abrirWhatsAppComDados() {
+    if (!leadName || !leadCity || !leadEmail || !leadPhone) return;
+
+    if (!leadForm.checkValidity()) {
+        leadForm.reportValidity();
+        return;
+    }
+
+    const nome = leadName.value.trim();
+    const cidade = leadCity.value.trim();
+    const email = leadEmail.value.trim();
+    const telefone = leadPhone.value.trim();
+
+    const mensagem = montarMensagemWhatsApp({
+        nome,
+        cidade,
+        email,
+        telefone,
+        service: leadContext.service
+    });
+
+    const url = `https://wa.me/${leadContext.phone}?text=${encodeURIComponent(mensagem)}`;
+
+    fecharLeadModal();
+
+    // Mantém a abertura em uma nova aba, como os links atuais do site.
+    window.open(url, "_blank", "noopener,noreferrer");
+}
+
 function abrirModal(chave) {
     const dados = servicos[chave];
     if (!dados || !modalOverlay || !modalIcon || !modalTitle || !modalList || !modalCta) return;
@@ -163,18 +266,18 @@ function abrirModal(chave) {
         modalList.appendChild(li);
     });
 
-    const mensagem = encodeURIComponent(
-        `Olá! Tenho interesse na solução de ${dados.titulo}. Podem me passar mais informações?`
-    );
-
-    modalCta.href = `https://wa.me/${WHATSAPP_PRINCIPAL}?text=${mensagem}`;
+    modalCta.dataset.service = dados.titulo;
+    modalCta.dataset.leadWhatsapp = WHATSAPP_PRINCIPAL;
+    modalCta.href = `https://wa.me/${WHATSAPP_PRINCIPAL}`;
     modalOverlay.classList.add("ativo");
+    modalOverlay.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
 }
 
 function fecharModal() {
     if (!modalOverlay) return;
     modalOverlay.classList.remove("ativo");
+    modalOverlay.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
 }
 
@@ -183,6 +286,27 @@ document.querySelectorAll(".card-link").forEach((botao) => {
         abrirModal(botao.dataset.service);
     });
 });
+
+// Todos os links que levam ao WhatsApp passam pelo cadastro antes de abrir a conversa.
+document.querySelectorAll("a[href*='wa.me']").forEach((link) => {
+    link.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        const phone = obterNumeroWhatsApp(link);
+        const service = link.dataset.service || "";
+        abrirLeadModal({ phone, service });
+    });
+});
+
+if (modalCta) {
+    modalCta.addEventListener("click", (event) => {
+        event.preventDefault();
+        abrirLeadModal({
+            phone: modalCta.dataset.leadWhatsapp || WHATSAPP_PRINCIPAL,
+            service: modalCta.dataset.service || ""
+        });
+    });
+}
 
 if (modalClose) {
     modalClose.addEventListener("click", fecharModal);
@@ -196,8 +320,32 @@ if (modalOverlay) {
     });
 }
 
+if (leadModalClose) {
+    leadModalClose.addEventListener("click", fecharLeadModal);
+}
+
+if (leadModalOverlay) {
+    leadModalOverlay.addEventListener("click", (e) => {
+        if (e.target === leadModalOverlay) {
+            fecharLeadModal();
+        }
+    });
+}
+
+if (leadForm) {
+    leadForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        abrirWhatsAppComDados();
+    });
+}
+
 document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-        fecharModal();
+    if (e.key !== "Escape") return;
+
+    if (leadModalOverlay?.classList.contains("ativo")) {
+        fecharLeadModal();
+        return;
     }
+
+    fecharModal();
 });
