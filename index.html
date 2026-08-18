@@ -227,48 +227,44 @@
 
             <div class="contact-box">
                 <div class="contact-main">
-                    <div class="contact-whatsapp">
+                    <div class="contact-heading">
                         <div class="whatsapp-badge">
                             <img class="whatsapp-badge-img" src="whatsapp-icon.png" alt="WhatsApp">
                         </div>
-
                         <div>
                             <p class="contact-label">Fale conosco</p>
                             <h3>Atendimento via WhatsApp</h3>
-                            <p class="contact-note">Preencha seus dados antes de iniciar a conversa.</p>
-                            <button class="btn btn-whatsapp contact-lead-button" id="contactLeadButton" type="button">Falar no WhatsApp</button>
+                            <p class="contact-note">Para iniciar uma conversa, escolha um dos números abaixo e preencha seus dados.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="contact-secondary">
-                    <a
+                    <button
                         class="contact-link whatsapp-link"
-                        href="https://wa.me/5511925079059"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        type="button"
                         data-lead-whatsapp="5511925079059"
+                        aria-label="Falar pelo WhatsApp no número 11 92507-9059"
                     >
                         <img class="contact-whatsapp-icon" src="whatsapp-icon.png" alt="WhatsApp">
                         <span>
                             <strong>(11) 92507-9059</strong>
-                            <small>WhatsApp</small>
+                            <small>Clique para preencher seus dados</small>
                         </span>
-                    </a>
+                    </button>
 
-                    <a
+                    <button
                         class="contact-link whatsapp-link"
-                        href="https://wa.me/5511914742246"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        type="button"
                         data-lead-whatsapp="5511914742246"
+                        aria-label="Falar pelo WhatsApp no número 11 91474-2246"
                     >
                         <img class="contact-whatsapp-icon" src="whatsapp-icon.png" alt="WhatsApp">
                         <span>
                             <strong>(11) 91474-2246</strong>
-                            <small>WhatsApp</small>
+                            <small>Clique para preencher seus dados</small>
                         </span>
-                    </a>
+                    </button>
                 </div>
 
                 <div class="contact-location-bottom">
@@ -339,9 +335,9 @@
             <div class="modal-icon" id="modalIcon"></div>
             <h3 id="modalTitle"></h3>
             <ul class="modal-list" id="modalList"></ul>
-            <a class="btn btn-primary modal-cta" id="modalCta" target="_blank" rel="noopener noreferrer">
+            <button class="btn btn-primary modal-cta" id="modalCta" type="button">
                 Falar sobre isso no WhatsApp
-            </a>
+            </button>
         </div>
     </div>
 
