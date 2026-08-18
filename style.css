@@ -357,12 +357,10 @@ nav a:hover {
 }
 
 .contact-main {
-    display: flex;
-    align-items: center;
-    padding: 28px 28px 18px;
+    padding: 30px 28px 22px;
 }
 
-.contact-whatsapp {
+.contact-heading {
     display: flex;
     align-items: center;
     gap: 18px;
@@ -416,7 +414,7 @@ nav a:hover {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
-    padding: 0 28px 22px;
+    padding: 0 28px 24px;
 }
 
 .contact-link {
@@ -424,12 +422,16 @@ nav a:hover {
     align-items: center;
     gap: 14px;
     text-decoration: none;
+    text-align: left;
+    width: 100%;
     padding: 16px 18px;
     border-radius: 16px;
     background: rgba(2, 8, 18, 0.55);
     border: 1px solid rgba(255, 255, 255, 0.08);
     color: #fff;
     transition: 0.25s;
+    font: inherit;
+    cursor: pointer;
 }
 
 .contact-link:hover {
@@ -874,10 +876,15 @@ nav a:hover {
     }
 
     .contact-main {
-        padding: 22px 18px 14px;
+        padding: 22px 18px 16px;
+    }
+
+    .contact-heading {
+        align-items: flex-start;
     }
 
     .contact-secondary {
+        grid-template-columns: 1fr;
         padding: 0 18px 18px;
     }
 
@@ -890,6 +897,14 @@ nav a:hover {
         width: 66px;
         height: 66px;
         min-width: 66px;
+    }
+
+    .contact-heading {
+        gap: 14px;
+    }
+
+    .contact-main h3 {
+        font-size: 21px;
     }
 
     .location-text h3 {
@@ -928,8 +943,3 @@ nav a:hover {
     border-color: rgba(0, 140, 255, 0.65);
 }
 
-.contact-lead-button {
-    margin-top: 10px;
-    padding: 12px 20px;
-    font-size: 14px;
-}
