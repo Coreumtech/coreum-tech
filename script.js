@@ -210,19 +210,6 @@ function montarMensagemWhatsApp({ nome, cidade, email, telefone, service }) {
     return linhas.join("\n");
 }
 
-function obterNumeroWhatsApp(link) {
-    const dataNumber = link?.dataset?.leadWhatsapp;
-    if (dataNumber) return dataNumber;
-
-    try {
-        const url = new URL(link.href);
-        const numero = url.pathname.replace(/\D/g, "");
-        return numero || WHATSAPP_PRINCIPAL;
-    } catch {
-        return WHATSAPP_PRINCIPAL;
-    }
-}
-
 function abrirWhatsAppComDados() {
     if (!leadName || !leadCity || !leadEmail || !leadPhone) return;
 
@@ -268,7 +255,6 @@ function abrirModal(chave) {
 
     modalCta.dataset.service = dados.titulo;
     modalCta.dataset.leadWhatsapp = WHATSAPP_PRINCIPAL;
-    modalCta.href = `https://wa.me/${WHATSAPP_PRINCIPAL}`;
     modalOverlay.classList.add("ativo");
     modalOverlay.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
@@ -287,13 +273,11 @@ document.querySelectorAll(".card-link").forEach((botao) => {
     });
 });
 
-// Todos os links que levam ao WhatsApp passam pelo cadastro antes de abrir a conversa.
-document.querySelectorAll("a[href*='wa.me']").forEach((link) => {
-    link.addEventListener("click", (event) => {
-        event.preventDefault();
-
-        const phone = obterNumeroWhatsApp(link);
-        const service = link.dataset.service || "";
+// Todo acesso ao WhatsApp passa obrigatoriamente pelo cadastro.
+document.querySelectorAll("[data-lead-whatsapp]").forEach((element) => {
+    element.addEventListener("click", () => {
+        const phone = element.dataset.leadWhatsapp || WHATSAPP_PRINCIPAL;
+        const service = element.dataset.service || "";
         abrirLeadModal({ phone, service });
     });
 });
@@ -305,14 +289,6 @@ if (modalCta) {
             phone: modalCta.dataset.leadWhatsapp || WHATSAPP_PRINCIPAL,
             service: modalCta.dataset.service || ""
         });
-    });
-}
-
-const contactLeadButton = document.getElementById("contactLeadButton");
-
-if (contactLeadButton) {
-    contactLeadButton.addEventListener("click", () => {
-        abrirLeadModal({ phone: WHATSAPP_PRINCIPAL, service: "" });
     });
 }
 
