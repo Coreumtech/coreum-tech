@@ -4,7 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coreum Tech Business | Soluções em TI</title>
+    <meta name="description" content="Soluções em TI para empresas: criação de sites corporativos, infraestrutura de redes, Wi-Fi corporativo, Microsoft 365, Google Workspace, backup, CFTV, controle de acesso e suporte técnico em Carapicuíba, Barueri, Osasco e região." />
+    <link rel="canonical" href="https://coreumtech.com.br/" />
     <link rel="stylesheet" href="style.css" />
+    <meta property="og:title" content="Coreum Tech Business | Soluções em TI" />
+    <meta property="og:description" content="Criação de sites corporativos e soluções em TI para empresas em Carapicuíba, Barueri, Osasco e região." />
+    <meta property="og:url" content="https://coreumtech.com.br/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://coreumtech.com.br/logo-full.png" />
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Coreum Tech Business",
+        "url": "https://coreumtech.com.br/",
+        "image": "https://coreumtech.com.br/logo-full.png",
+        "description": "Soluções em TI e criação de sites corporativos para empresas em Carapicuíba, Barueri, Osasco e região.",
+        "areaServed": [
+            "Carapicuíba",
+            "Barueri",
+            "Osasco"
+        ],
+        "sameAs": []
+    }
+    </script>
 </head>
 <body>
 
@@ -28,10 +51,10 @@
         <section class="hero" id="inicio">
             <div class="hero-text">
                 <span class="hero-badge">TECNOLOGIA INTELIGENTE</span>
-                <h1>Para impulsionar o seu negócio.</h1>
+                <h1>Soluções em TI e sites corporativos para impulsionar o seu negócio</h1>
                 <p>
-                    Soluções completas em TI para aumentar a produtividade,
-                    a segurança e a eficiência da sua empresa.
+                    Soluções completas em TI e criação de sites corporativos para aumentar a produtividade,
+                    a segurança, a presença digital e a eficiência da sua empresa.
                 </p>
 
                 <a href="#contato" class="btn btn-primary">Fale com a gente</a>
@@ -96,6 +119,13 @@
                     <h3>Google Workspace</h3>
                     <p>Implantação, migração e suporte para Gmail, Drive, Meet, Docs e outros.</p>
                     <button class="card-link" data-service="workspace">Conhecer solução →</button>
+                </article>
+
+                <article class="card">
+                    <div class="card-icon icon-emoji">🌐</div>
+                    <h3>Criação de Sites Corporativos</h3>
+                    <p>Desenvolvimento de sites profissionais, responsivos e alinhados à presença digital da sua empresa.</p>
+                    <button class="card-link" data-service="sites">Conhecer solução →</button>
                 </article>
 
                 <article class="card">
@@ -205,24 +235,7 @@
                         <div>
                             <p class="contact-label">Fale conosco</p>
                             <h3>Atendimento via WhatsApp</h3>
-                            <a
-                                class="btn btn-whatsapp"
-                                href="https://wa.me/5511914742246?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Coreum%20Tech%20Business%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                Falar agora
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="contact-separator"></div>
-
-                    <div class="contact-location">
-                        <img class="location-icon-img" src="location-icon.png" alt="Localização">
-                        <div class="location-text">
-                            <p class="contact-label">Atendemos</p>
-                            <h3>Carapicuíba, Barueri, Osasco e região.</h3>
+                            <p class="contact-note">Preencha seus dados para iniciar o atendimento.</p>
                         </div>
                     </div>
                 </div>
@@ -230,9 +243,10 @@
                 <div class="contact-secondary">
                     <a
                         class="contact-link whatsapp-link"
-                        href="https://wa.me/5511925079059?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Coreum%20Tech%20Business%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+                        href="https://wa.me/5511925079059"
                         target="_blank"
                         rel="noopener noreferrer"
+                        data-lead-whatsapp="5511925079059"
                     >
                         <img class="contact-whatsapp-icon" src="whatsapp-icon.png" alt="WhatsApp">
                         <span>
@@ -243,9 +257,10 @@
 
                     <a
                         class="contact-link whatsapp-link"
-                        href="https://wa.me/5511914742246?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Coreum%20Tech%20Business%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+                        href="https://wa.me/5511914742246"
                         target="_blank"
                         rel="noopener noreferrer"
+                        data-lead-whatsapp="5511914742246"
                     >
                         <img class="contact-whatsapp-icon" src="whatsapp-icon.png" alt="WhatsApp">
                         <span>
@@ -254,8 +269,61 @@
                         </span>
                     </a>
                 </div>
+
+                <div class="contact-location-bottom">
+                    <img class="location-icon-img" src="location-icon.png" alt="Localização">
+                    <div class="location-text">
+                        <p class="contact-label">Atendemos</p>
+                        <h3>Carapicuíba, Barueri, Osasco e região.</h3>
+                    </div>
+                </div>
             </div>
         </section>
+
+        <!-- Modal de cadastro antes do WhatsApp -->
+        <div class="lead-modal-overlay" id="leadModalOverlay" aria-hidden="true">
+            <div class="lead-modal-box" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+                <button class="lead-modal-close" id="leadModalClose" type="button" aria-label="Fechar">×</button>
+                <div class="lead-modal-header">
+                    <div class="lead-modal-icon">💬</div>
+                    <div>
+                        <p class="contact-label">Antes de continuar</p>
+                        <h3 id="leadModalTitle">Preencha seus dados</h3>
+                    </div>
+                </div>
+
+                <p class="lead-modal-description">
+                    Precisamos dessas informações para identificar seu contato e iniciar o atendimento pelo WhatsApp.
+                </p>
+
+                <form id="leadForm" class="lead-form">
+                    <div class="lead-form-grid">
+                        <div class="lead-field">
+                            <label for="leadName">Nome</label>
+                            <input id="leadName" name="name" type="text" autocomplete="name" required placeholder="Seu nome completo">
+                        </div>
+
+                        <div class="lead-field">
+                            <label for="leadCity">Cidade</label>
+                            <input id="leadCity" name="city" type="text" autocomplete="address-level2" required placeholder="Sua cidade">
+                        </div>
+
+                        <div class="lead-field">
+                            <label for="leadEmail">E-mail</label>
+                            <input id="leadEmail" name="email" type="email" autocomplete="email" required placeholder="voce@empresa.com">
+                        </div>
+
+                        <div class="lead-field">
+                            <label for="leadPhone">Telefone</label>
+                            <input id="leadPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(11) 99999-9999">
+                        </div>
+                    </div>
+
+                    <button class="btn btn-whatsapp lead-submit" type="submit">Continuar no WhatsApp</button>
+                    <p class="lead-form-note">Seus dados não são armazenados pelo site; eles serão enviados na mensagem do WhatsApp.</p>
+                </form>
+            </div>
+        </div>
     </main>
 
     <footer class="site-footer">
