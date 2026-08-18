@@ -308,6 +308,14 @@ if (modalCta) {
     });
 }
 
+const contactLeadButton = document.getElementById("contactLeadButton");
+
+if (contactLeadButton) {
+    contactLeadButton.addEventListener("click", () => {
+        abrirLeadModal({ phone: WHATSAPP_PRINCIPAL, service: "" });
+    });
+}
+
 if (modalClose) {
     modalClose.addEventListener("click", fecharModal);
 }
